@@ -7,3 +7,12 @@ var missed=0;
 btnReset.addEventListener('click', () => {
   overlay.style.display="none";
 });
+
+//array of phrases
+var phrases = [
+"I love chocolate",
+"Be my valentine",
+"I want to break free",
+"Call me maybe",
+"This is my last song"
+];
