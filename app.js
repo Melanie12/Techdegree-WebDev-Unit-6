@@ -36,6 +36,7 @@ function addPhraseToDisplay(arr){
     for (i=0; i< phraseLetters.length;i++) {
     const li = document.createElement('li'); //create a new element li
     ul.appendChild('li');
+  }
 };
 
 const phraseArray = getRandomPhraseAsArray(phrases);
