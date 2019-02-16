@@ -3,6 +3,7 @@ var phrase = document.getElementById("phrase");
 var missed=0;
 let startButton = document.querySelector("a.btn__reset");
 let listItem = document.querySelector('#phrase ul');
+const ul = phrase.querySelector('ul');
 
 
 //hide overlay
@@ -34,14 +35,8 @@ function getRandomPhraseAsArray(arr){
 function addPhraseToDisplay(arr){
     for (i=0; i< phraseLetters.length;i++) {
     const li = document.createElement('li'); //create a new element li
-}
+    ul.appendChild('li');
+};
 
 const phraseArray = getRandomPhraseAsArray(phrases);
 addPhrasetoDisplay(phraseArray);
-//Create a checkletter function
-
-//Add an event listener to the Keyboard
-
-//Count the missed guesses in the Game
-
-//Create a checkWin function
