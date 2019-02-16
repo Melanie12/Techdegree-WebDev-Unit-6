@@ -1,11 +1,11 @@
 var qwerty = document.getElementById("qwerty");
 var phrase = document.getElementById("phrase");
 var missed=0;
-
+let startButton = document.querySelector("a.btn__reset");
 
 //hide overlay
-document.getElementsbyClassName("btnReset").addEventListener('click', () => {
-  overlay.style.display="none";
+  startButton.addEventListener('click',()=>{
+  overlay.style.display = "none";
 });
 
 //array of phrases
