@@ -32,8 +32,9 @@ function getRandomPhraseAsArray(arr){
 
 
 //Set the game display
-function addPhraseToDisplay(arr){
-    for (i=0; i< phraseLetters.length;i++) {
+let phraseLetters = getRandomPhraseAsArray(arr);
+function addPhraseToDisplay(arr) {
+  for (i=0; i< phraseLetters.length;i++) {
     const li = document.createElement('li'); //create a new element li
     ul.appendChild('li');
   }
