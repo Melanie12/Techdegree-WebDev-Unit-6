@@ -2,10 +2,14 @@ var qwerty = document.getElementById("qwerty");
 var phrase = document.getElementById("phrase");
 var missed=0;
 let startButton = document.querySelector("a.btn__reset");
+let listItem = document.querySelector('#phrase ul');
+
 
 //hide overlay
   startButton.addEventListener('click',()=>{
   overlay.style.display = "none";
+  const phraseArray = getRandomPhraseAsArray(phrases);
+  addPhraseToDisplay(phraseArray);
 });
 
 //array of phrases
@@ -18,15 +22,20 @@ var phrases = [
 ];
 
 //function to choose a random phrase
-function getRandomPhraseArray(arr){
-    //do stuff to any arr that is passed in
-}
-getRandomPhraseAsArray(phrases);
+function getRandomPhraseAsArray(arr){
+    var phraseIndex = Math.floor(Math.random() * phrases.length); //choose a number between 1 and 5
+    var randomPhrase = arr[phraseIndex].toLowerCase(); //apply that number to  phraseIndex and make it lowercase
+    var phraseLetters = randomPhrase.split(""); //JS method to split characters
+    return phraseLetters;
+  };
+
 
 //Set the game display
 function addPhraseToDisplay(arr){
-    // do stuff any arr that is passed in, and add to `#phrase ul`
+    for (i=0; i< phraseLetters.length;i++) {
+    const li = document.createElement('li'); //create a new element li
 }
+
 const phraseArray = getRandomPhraseAsArray(phrases);
 addPhrasetoDisplay(phraseArray);
 //Create a checkletter function
