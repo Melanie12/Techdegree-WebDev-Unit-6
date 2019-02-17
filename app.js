@@ -32,13 +32,18 @@ function getRandomPhraseAsArray(arr){
 
 
 //Set the game display
-let phraseLetters = getRandomPhraseAsArray(arr);
 function addPhraseToDisplay(arr) {
-  for (i=0; i< phraseLetters.length;i++) {
-    const li = document.createElement('li'); //create a new element li
-    ul.appendChild('li');
+  for(let i = 0; i < arr.length; i += 1){// loop
+    let letter = arr[i];
+    letter = document.createElement('li'); //create list
+    letter.textContent = arr[i];    //put the character inside of the list item
+    if(letter.textContent !== " "){    // if the character in the array is a letter and not a space, the function should add the class “letter” to the list item
+      letter.className = "letter";
+    }
+    else {
+      letter.className = "space";
+    }
+    ul.appendChild(letter);
   }
-};
-
-const phraseArray = getRandomPhraseAsArray(phrases);
-addPhrasetoDisplay(phraseArray);
+}
+//create a check letter function
