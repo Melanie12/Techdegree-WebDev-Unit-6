@@ -7,7 +7,7 @@ const ul = phrase.querySelector('ul');
 
 
 //hide overlay
-  startButton.addEventListener('click',()=>{
+startButton.addEventListener('click',()=>{
   overlay.style.display = "none";
   const phraseArray = getRandomPhraseAsArray(phrases);
   addPhraseToDisplay(phraseArray);
@@ -48,30 +48,11 @@ function addPhraseToDisplay(arr) {
 }
 
 //create a check letter function (to use again in the addEventListener)
-const checkLetter = (btn) => {
-  let clicks = false;
-  const pickLetter = document.getElementsByClassName("letter");
-  let listLetter = Array.from(pickLetter);
-    for (var i=0; i<newLetter.length; i++) {
-      if (btn.textContent === listLetter[i].textContent) {
-        clicks=true;
-        listLetter[i].classList.add('show');
-    }
-  }
-return clicks;
-}
+ function checkLetter(button){
+   let classLetter=document.getElementsByClassName("letter");
+   console.log(classLetter);
+
+ }
 
 //Add an event listener to the keyboard
-qwerty.addEventListener('click', (event) => {
-    let btnLtr = event.target;
-      if (event.target.tagName == 'BUTTON') {
-        btnLtr.classList.add('chosen'); //if button clicked add class "chosen"
-        btnLtr.setAttribute('disabled', 'true'); //if button clicked add attribute 'disabled'
-      }
-     if(checkLetter(letterFound) === null) { //if letter not found increase missed
-       missed += 1;
-       tries[missed - 1].querySelector('img').setAttribute('src','images/lostHeart.png'); //change the heart image
-     }
-     checkWin();
-
-});
+//qwerty.addEventListener('click', (event) => {}
