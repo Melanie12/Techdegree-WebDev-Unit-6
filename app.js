@@ -50,9 +50,14 @@ function addPhraseToDisplay(arr) {
 //create a check letter function (to use again in the addEventListener)
  function checkLetter(button){
    let classLetter=document.getElementsByClassName("letter");
-   console.log(classLetter);
-
+   for(var i=0; i<classLetter.length; i+=1){
+     if(classLetter.textContent=button.textContent) {
+       classLetter.className="show";
+     }
+     letter.className="null";
+   }
  }
+ console.log(checkLetter);
 
 //Add an event listener to the keyboard
 //qwerty.addEventListener('click', (event) => {}
