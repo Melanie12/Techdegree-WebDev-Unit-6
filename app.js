@@ -48,12 +48,21 @@ function addPhraseToDisplay(arr) {
 }
 
 //create a check letter function (to use again in the addEventListener)
- function checkLetter(button){
-   let classLetter=document.getElementsByClassName("letter");
-   for(let i = 0; i < classLetter.length; i ++) {
-     console.log(i);
-   }
+function checkLetter(button){
+let classLetter=document.getElementsByClassName("letter");
+let newLetter = Array.from(classLetter);
+
+   for(let i = 0; i < newLetter.length; i++) {
+     if (button.textContent === newLetter[i].textContent)
+        {
+        newLetter[i].classList.add="show";
+        var letterFound=document.getElementsByClassName("show");;
+        return letterFound;
+        }
+      return null;
+      }
  }
+
 
 
 
