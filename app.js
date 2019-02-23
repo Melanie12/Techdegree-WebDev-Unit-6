@@ -48,24 +48,35 @@ function addPhraseToDisplay(arr) {
 }
 
 //create a check letter function (to use again in the addEventListener)
-let button = document.getElementsByTagName("button");
-let classLetter=document.getElementsByClassName("letter");
-let newLetter = Array.from(classLetter);
 function checkLetter(button){
+    let clicks = false;
+  let classLetter=document.getElementsByClassName("letter");
+  let newLetter = Array.from(classLetter);
    for(let i = 0; i < newLetter.length; i++) {
      if (button.textContent === newLetter[i].textContent)
         {
-        newLetter[i].classList.add="show";
+        newLetter[i].classList.add=("show");
         var letterFound=document.getElementsByClassName("show");
         return letterFound;
         }
-      return null;
       }
+      return clicks;
  }
 
 
 
-
-
 //Add an event listener to the keyboard
-//qwerty.addEventListener('click', (event) => {}
+qwerty.addEventListener('click', (event) => {
+    let btnLtr = event.target;
+      if (event.target.tagName === 'BUTTON') {
+        btnLtr.classList.add("chosen");
+        btnLtr.setAttribute("disabled", 'true');
+      }
+    let letterFound = checkLetter(btnLtr);
+      if (!letterFound) {
+        let btnLtr = event.target;
+          if (event.target.tagName === "BUTTON") {
+            btnLtr.classList.add("shake");
+        }
+    }
+});
