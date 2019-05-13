@@ -1,17 +1,10 @@
-var qwerty = document.getElementById("qwerty");
-var phrase = document.getElementById("phrase");
+const qwerty = document.getElementById("qwerty");
+const phrase = document.getElementById("phrase");
 var missed=0;
-let startButton = document.querySelector("a.btn__reset");
-let listItem = document.querySelector('#phrase ul');
-const ul = phrase.querySelector('ul');
+const startButton = document.querySelector("a.btn__reset");
+const listItem = document.querySelector('#phrase ul');
+const phraseUl = phrase.querySelector('ul');
 
-
-//hide overlay
-startButton.addEventListener('click',()=>{
-  overlay.style.display = "none";
-  const phraseArray = getRandomPhraseAsArray(phrases);
-  addPhraseToDisplay(phraseArray);
-});
 
 //array of phrases
 var phrases = [
@@ -22,61 +15,56 @@ var phrases = [
 "This is my last song"
 ];
 
-//function to choose a random phrase
-function getRandomPhraseAsArray(arr){
-    var phraseIndex = Math.floor(Math.random() * phrases.length); //choose a number between 1 and 5
-    var randomPhrase = arr[phraseIndex].toLowerCase(); //apply that number to  phraseIndex and make it lowercase
-    var phraseLetters = randomPhrase.split(""); //JS method to split characters
-    return phraseLetters;
-  };
-
-
-//Set the game display
-function addPhraseToDisplay(arr) {
-  for(let i = 0; i < arr.length; i += 1){// loop
-    let letter = arr[i];
-    letter = document.createElement('li'); //create list
-    letter.textContent = arr[i];    //put the character inside of the list item
-    if(letter.textContent !== " "){    // if the character in the array is a letter and not a space, the function should add the class “letter” to the list item
-      letter.className = "letter";
-    }
-    else {
-      letter.className = "space";
-    }
-    ul.appendChild(letter); //append the list items to the list  #phrase ul
-  }
-}
-
-//create a check letter function (to use again in the addEventListener)
-function checkLetter(button){
-    let clicks = false;
-  let classLetter=document.getElementsByClassName("letter");
-  let newLetter = Array.from(classLetter);
-   for(let i = 0; i < newLetter.length; i++) {
-     if (button.textContent === newLetter[i].textContent)
-        {
-        newLetter[i].classList.add=("show");
-        var letterFound=document.getElementsByClassName("show");
-        return letterFound;
-        }
-      }
-      return clicks;
- }
-
-
-
-//Add an event listener to the keyboard
-qwerty.addEventListener('click', (event) => {
-    let btnLtr = event.target;
-      if (event.target.tagName === 'BUTTON') {
-        btnLtr.classList.add("chosen");
-        btnLtr.setAttribute("disabled", 'true');
-      }
-    let letterFound = checkLetter(btnLtr);
-      if (!letterFound) {
-        let btnLtr = event.target;
-          if (event.target.tagName === "BUTTON") {
-            btnLtr.classList.add("shake");
-        }
-    }
+//function to select a random phrase
+startButton.addEventListener('click',() => {
+  const overlay = document.getElementById("overlay");
+  overlay.style.display='none';
 });
+
+//return a random phrase from array
+const getRandomPhraseAsArray = arr => {
+  let random= Math.floor(Math.random()*arr.length);
+  let randomPhrase=arr[random];
+  let randomPhraseSplit = randomPhrase.split("");
+  return randomPhraseSplit;
+
+}
+const phraseArray = getRandomPhraseAsArray(phrases);
+
+//function to set the game addPhraseToDisplay
+const addPhraseToDisplay =arr => {
+  for (let i=0; i<arr.length;i++){
+    const listItem =document.createElement("li");
+    listItem.innerText=arr[i];
+    phraseUl.appendChild(listItem);
+    if(listItem.innerText !==""){
+      listItem.className="letter";
+    }
+  }
+};
+addPhraseToDisplay(phraseArray);
+
+
+//check if a letter is in the phrase
+const checkLetter=button => {
+  let checkLetter= document.querySelectorAll(".letter");
+  let matchFound=null;
+  for(let i=0; i<checkLetter.length; i++) {
+    if(button.innerText.toUpperCase()===checkletter[i].innerText.toUpperCase()){
+      checkLetter[i].classList.add("show");
+      return matchFound=true;
+    }
+  }
+return matchFound;
+};
+
+
+
+// check if the game has been won or lost
+//const checkWin = {} => {}
+
+//listen for the start game button to be pressed
+//startButton.addEventListener('click', ()=> {});
+
+// listen for the onscreen jeyboard to be clicked
+//qwerty.addEventListener('click', e=>{})
