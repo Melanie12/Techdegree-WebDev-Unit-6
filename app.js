@@ -1,18 +1,20 @@
-const qwerty = document.getElementById("qwerty");
-const phrase = document.getElementById("phrase");
+let qwerty = document.getElementById("qwerty");
+let phrase = document.getElementById("phrase");
 var missed=0;
-const startButton = document.querySelector("a.btn__reset");
-const listItem = document.querySelector('#phrase ul');
-const phraseUl = phrase.querySelector('ul');
+let startButton = document.querySelector("a.btn__reset");
+let listItem = document.querySelector('#phrase ul');
+let phraseUl = phrase.querySelector('ul');
+let hearts=document.querySelectorAll('.tries');
+let title= document.querySelector('#overlay .title');
 
 
 //array of phrases
 var phrases = [
-  "I love chocolate",
-  "Be my valentine",
-  "I want to break free",
-  "Call me maybe",
-  "This is my last song"
+  "i love chocolate",
+  "be my valentine",
+  "i want to break free",
+  "call me maybe",
+  "this is my last song"
 ];
 
 //function to select a random phrase
@@ -41,32 +43,71 @@ const addPhraseToDisplay =arr => {
     if(listItem.innerText !==""){
       listItem.className="letter";
     }
+    else {listItem.className="space";}
   }
 };
 addPhraseToDisplay(phraseArray);
 
 
 //check if a letter is in the phrase
-const checkLetter=button => {
-  let checkLetter = document.getElementsByClassName("letter");
-  let matchFound=null;
-  for(let i=0; i<checkLetter.length; i++) {
-    if(button.innerText.toUpperCase()===checkLetter[i].innerText.toUpperCase()){
-      //  if(button.textContent===checkLetter[i].textContent){
-      checkLetter[i].classList.add('show');
-      matchFound=button.innerText;
+function checkLetter(event) {
+    let phraseLetter = document.querySelectorAll('.letter');
+    let result = null;
+
+    for (let i = 0; i < phraseLetter.length; i++) {
+        if (phraseLetter[i].textContent == event.textContent) {
+            phraseLetter[i].classList.add("show");
+            result = event;
+        }
     }
-  }
-return matchFound;
-};
+    return result;
+}
+
+
 
 // listen for the onscreen keyboard to be clicked
-qwerty.addEventListener("click", e => {
- const buttonChoosen = e.target;
- if (buttonChoosen.tagName === "BUTTON") {
-    buttonChoosen.classList.add('chosen');
-    buttonChoosen.setAttribute("disabled", "");
-      } else {
-   return null;
- }
+qwerty.addEventListener('click', function(event) {
+    let target_tagName = 'BUTTON';
+    let get_tagName = event.target.tagName;
+    if (target_tagName == get_tagName) {
+        event.target.className = "chosen";
+        event.target.disabled = true;
+        let letterFound = checkLetter(event.target);
+        if (letterFound === null) {
+            missed++;
+            let lost_heart = document.querySelector('.tries');
+            lost_heart.remove();
+        }
+        checkWin();
+    }
 });
+
+//check if you won
+function checkWin() {
+  function set_flex(e){
+	e.style.display = 'flex';
+};
+
+function reset_game(event){
+	event.addEventListener('click', function() {
+	    window.location.reload(true);
+	});
+};
+    if (missed === hearts.length) {
+    		console.log(hearts.length);
+        overlay.className = "lose";
+        title.textContent = "Oh no!! ... You Lost!";
+        startButton.textContent = "Try Again!";
+        set_flex(overlay);
+        reset_game(startButton);
+    }
+    let letters = document.querySelectorAll('.letter');
+    let shows 	= document.querySelectorAll('.show');
+    if (shows.length == letters.length) {
+        overlay.className = "win";
+        title.textContent = "Hey! You Won!!!";
+        startButton.textContent = "Play Again!"
+        set_flex(overlay);
+        reset_game(button_startGame);
+    }
+}
